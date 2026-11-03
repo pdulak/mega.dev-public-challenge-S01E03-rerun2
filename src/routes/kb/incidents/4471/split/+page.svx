@@ -1,0 +1,48 @@
+---
+layout: runbook
+title: '#4471 split · three problems, three tickets'
+owner: support desk
+status: accepted
+reviewed: 2026-11-03
+signature: v1.eyJzdWIiOiI3MSIsImF1ZCI6ImNoYWxsZW5nZTp3aGF0LWl0LXNob3dzIiwiaWF0IjoxNzkzNzA0MjU4LCJleHAiOjE3OTM3OTA2NTh9.s-4elj9mguWmUssYS_LZyX3X0DS6YbNk_jWBVlleAhE
+---
+
+<script>
+  import SplitTable from '#lib/kb/SplitTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+[#4471](/kb/incidents/4471) was merged on subject line ([decision 0001](/kb/decisions/0001-dedupe-by-subject)) and
+marked known as one issue with one fix queued. Its own table already shows more than one cause. Read by cause, it holds
+three problems. Each now has its own ticket.
+
+<Callout kind="warn">
+The queued parser fix closes only the first row. The other two need their own fixes.
+</Callout>
+
+## The split
+
+<SplitTable ticket={4471} />
+
+## How the reports were counted
+
+- **One id, one report.** The ticket export comes in overlapping pages, so some reports appear twice. Counts are
+  of unique ids.
+- **The cause comes from the tenant, not from intake.** Intake tags a report from the reporter's browser. The cause
+  depends on the tenant's locale and booking form and on the channel the report came through
+  (`src/lib/kb/causes.ts`). The "intake tagged as" column shows how often the two disagree.
+- **parser:** the shared parser reads every date month first, and every tenant on file writes the day first.
+  Their dates come out with day and month swapped.
+- **hint:** on booking-v3, the form's hint says `MM/DD/YYYY`. People type month first, as told, and the form reads the
+  date the tenant's way. A parser fix does not reach these.
+- **one-day-move:** the reports the desk read as a one-day move. Their dates move by one day, or differ between
+  two places for the same meeting. A month-first parser cannot do that, so they are not counted under `parser` here,
+  even though their tenants are day-first.
+
+## What changes for the desk
+
+- Do not merge on subject alone for date reports: the same subject came from three different bugs.
+- Close each split ticket on its own fix. #4471 stays the record of what was merged.
+
+<RenderStamp {signature} />
