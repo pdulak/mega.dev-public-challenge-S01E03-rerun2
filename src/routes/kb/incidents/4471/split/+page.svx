@@ -18,7 +18,9 @@ marked known as one issue with one fix queued. Its own table already shows more 
 three problems. Each now has its own ticket.
 
 <Callout kind="warn">
-The queued parser fix closes only the first row. The other two need their own fixes.
+Desk update: #4471 was closed on 5 October. The parser fix shipped and the booking-v3 form was retired, so its hint bug
+won't be fixed. Neither covers the one-day moves: that ticket is closed as not planned, and a new one-day report needs a
+ticket of its own, not a merge into #4471. The table shows each ticket's state as GitHub had it when this page was built.
 </Callout>
 
 ## The split
@@ -43,6 +45,7 @@ The queued parser fix closes only the first row. The other two need their own fi
 ## What changes for the desk
 
 - Do not merge on subject alone for date reports: the same subject came from three different bugs.
-- Close each split ticket on its own fix. #4471 stays the record of what was merged.
+- Close each split ticket on its own outcome, and cite where the outcome came from. #4471 stays the record of what was merged.
+- Watch for one-day moves: no fix covers them yet.
 
 <RenderStamp {signature} />

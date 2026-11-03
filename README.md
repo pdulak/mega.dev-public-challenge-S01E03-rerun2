@@ -43,6 +43,7 @@ The kb export above plus a page that splits #4471 into its problems:
 
 - page source: `src/routes/kb/incidents/4471/split/+page.svx` (logic in `src/lib/kb/split.ts`, `SplitTable.svelte`)
 - the page as the desk sees it: `export/4471-split.html` (one self-contained file; open it in a browser)
-- tickets: issues #1 (parser), #2 (hint), #3 (one-day move)
+- tickets: issues #1 (parser, closed: fixed), #2 (hint, closed: won't fix), #3 (one-day move, closed: not planned)
+- ticket state: `scripts/refresh-snapshot.sh` writes `src/lib/data/issues-snapshot.json` (with `fetchedAt`); desk update in `src/lib/data/desk-update-4471.json`
 - build: `npm i && npx vite build`, then `node scripts/export-html.mjs build/kb/incidents/4471/split.html export/4471-split.html`
 - counts check: `node scripts/count.mjs .` and `node scripts/detail.mjs .` (Node 22+, runs the kb's own `causes.ts`)

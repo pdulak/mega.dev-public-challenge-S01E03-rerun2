@@ -1,0 +1,9 @@
+{
+  "source": "engineering update, posted by the support desk with the Challenge; read 2026-11-03",
+  "ticket": 4471,
+  "closed": "2026-10-05",
+  "outcomes": {
+    "parser": { "outcome": "fixed", "note": "fix(dates): parse dd/mm for eu locales" },
+    "hint": { "outcome": "won't fix", "note": "booking-v3 form retired" }
+  }
+}
